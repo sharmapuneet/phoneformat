@@ -1,0 +1,64 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks'
+import PhoneFormatExample from './example'
+
+<Meta title="Services|Phone Format" />
+
+# phoneFormat (service)
+## About
+The phoneFormat service is defined to format it.
+
+## Params
+* phone {*string*} - Phone Number
+* phoneConfig {*object*} = Object of domestic codes, international codes, false numbers, min and max values.
+
+## phoneConfig
+* domCodes {*array*} - Domestic landline codes.
+* intlCodes {*array*} - International landline codes.
+* falseNumbers {*array*} - False phone numbers.
+* mobileCode {*array*} - Mobile code.
+* intlMobileCode {*array*} - International mobile code.
+* domPattern {*array*} - Domestic landline number format pattern.
+* intlPattern {*array*} - International landline number format pattern.
+* mobilePattern {*array*} - Mobile number format pattern.
+* intlMobilePattern {*array*} - International mobile number format pattern.
+
+
+## Example
+```javascript
+const phoneConfig = {
+  domCodes: ['02', '03', '07', '08'],
+  intlCodes: ['612', '613', '617', '618'],
+  falseNumbers: ['0400000000', '2000000000', '1234567891'],
+  domPattern: ['2', '4', '4'],
+  intlPattern: ['3', '4', '4'],
+  mobilePattern: ['4', '3', '3'],
+  mobileCode: ['04'],
+  intlMobileCode: ['614'],
+  intlMobilePattern: ['3', '2', '3', '3'],
+}
+
+const PhoneExample = () => {
+  const [value, setValue] = useState('')
+  const handleChange = event => {
+    setValue(event.target.value)
+  }
+
+  return (
+    <form>
+      <TextField label="Phone" type="number" value={phoneFormat(value, phoneConfig)} onChange={handleChange} />
+    </form>
+  )
+}
+
+```
+
+## How it works
+This service takes in the phone number and phoneConfig object to apply multiple checks and return formatted phone number.
+
+<Preview>
+  <Story name="Basic Usage">
+    <div>
+      <PhoneFormatExample />
+    </div>
+  </Story>
+</Preview >
